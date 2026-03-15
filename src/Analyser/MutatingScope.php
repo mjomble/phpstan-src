@@ -1038,13 +1038,6 @@ class MutatingScope implements Scope, NodeCallbackInvoker
 			// Has offset, it is nullable
 			return null;
 
-		} elseif ($expr instanceof Expr\NullsafePropertyFetch) {
-			$varType = $this->getType($expr->var);
-			if (TypeCombinator::containsNull($varType)) {
-				return null;
-			}
-
-			return $this->issetCheck(new PropertyFetch($expr->var, $expr->name), $typeCallback, $result);
 		} elseif ($expr instanceof Node\Expr\PropertyFetch || $expr instanceof Node\Expr\StaticPropertyFetch) {
 
 			$propertyReflection = $this->propertyReflectionFinder->findPropertyReflectionFromNode($expr, $this);
@@ -1139,7 +1132,7 @@ class MutatingScope implements Scope, NodeCallbackInvoker
 			return false;
 		}
 
-		if ($expr instanceof Expr\PropertyFetch || $expr instanceof Expr\NullsafePropertyFetch) {
+		if ($expr instanceof Expr\PropertyFetch) {
 			return $this->issetCheckUndefined($expr->var);
 		}
 

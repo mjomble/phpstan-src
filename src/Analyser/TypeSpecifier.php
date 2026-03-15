@@ -1035,7 +1035,6 @@ final class TypeSpecifier
 			while (
 				$issetExpr instanceof ArrayDimFetch
 				|| $issetExpr instanceof PropertyFetch
-				|| $issetExpr instanceof Expr\NullsafePropertyFetch
 				|| (
 					$issetExpr instanceof StaticPropertyFetch
 					&& $issetExpr->class instanceof Expr
@@ -1093,7 +1092,7 @@ final class TypeSpecifier
 				}
 
 				if (
-					($var instanceof PropertyFetch || $var instanceof Expr\NullsafePropertyFetch)
+					$var instanceof PropertyFetch
 					&& $var->name instanceof Node\Identifier
 				) {
 					$types = $types->unionWith(

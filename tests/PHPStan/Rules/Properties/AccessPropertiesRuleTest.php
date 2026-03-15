@@ -23,10 +23,12 @@ class AccessPropertiesRuleTest extends RuleTestCase
 
 	private bool $checkDynamicProperties;
 
+	private bool $checkImplicitMixed = false;
+
 	protected function getRule(): Rule
 	{
 		$reflectionProvider = self::createReflectionProvider();
-		return new AccessPropertiesRule(new AccessPropertiesCheck($reflectionProvider, new RuleLevelHelper($reflectionProvider, true, $this->checkThisOnly, $this->checkUnionTypes, false, false, false, true), new PhpVersion(PHP_VERSION_ID), true, $this->checkDynamicProperties, true));
+		return new AccessPropertiesRule(new AccessPropertiesCheck($reflectionProvider, new RuleLevelHelper($reflectionProvider, true, $this->checkThisOnly, $this->checkUnionTypes, false, $this->checkImplicitMixed, false, true), new PhpVersion(PHP_VERSION_ID), true, $this->checkDynamicProperties, true));
 	}
 
 	public function testAccessProperties(): void
@@ -1252,6 +1254,15 @@ class AccessPropertiesRuleTest extends RuleTestCase
 			];
 		}
 		$this->analyse([__DIR__ . '/data/bug-13537.php'], $errors);
+	}
+
+	public function testNullsafePropertyFetchInIssetCoalesce(): void
+	{
+		$this->checkThisOnly = false;
+		$this->checkUnionTypes = true;
+		$this->checkDynamicProperties = false;
+		$this->checkImplicitMixed = true;
+		$this->analyse([__DIR__ . '/data/nullsafe-property-fetch-isset-coalesce.php'], []);
 	}
 
 }
