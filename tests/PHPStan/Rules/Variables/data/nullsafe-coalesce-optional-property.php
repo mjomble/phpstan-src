@@ -38,8 +38,7 @@ final class NullsafePropertyChain
 	public function testIsset(mixed $outer): void
 	{
 		if ($outer !== null) {
-			if (isset($outer->inner?->value)) {
-			}
+			isset($outer->inner?->value);
 		}
 	}
 
@@ -49,8 +48,7 @@ final class NullsafePropertyChain
 	public function testEmpty(mixed $outer): void
 	{
 		if ($outer !== null) {
-			if (empty($outer->inner?->value)) {
-			}
+			empty($outer->inner?->value);
 		}
 	}
 

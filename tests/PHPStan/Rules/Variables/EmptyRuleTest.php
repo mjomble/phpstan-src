@@ -234,7 +234,7 @@ class EmptyRuleTest extends RuleTestCase
 		$this->analyse([__DIR__ . '/data/nullsafe-coalesce-optional-property.php'], [
 			[
 				'Using nullsafe property access "?->value" in empty() is unnecessary. Use -> instead.',
-				52,
+				51,
 			],
 		]);
 	}
