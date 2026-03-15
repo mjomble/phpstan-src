@@ -304,7 +304,7 @@ final class IssetCheck
 			)->identifier(sprintf('%s.offset', $identifier))->build();
 		}
 
-		if ($expr instanceof Expr\PropertyFetch) {
+		if ($expr instanceof Expr\PropertyFetch || $expr instanceof Expr\NullsafePropertyFetch) {
 			return $this->checkUndefined($expr->var, $scope, $operatorDescription, $identifier);
 		}
 

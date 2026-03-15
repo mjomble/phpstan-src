@@ -1143,7 +1143,7 @@ class MutatingScope implements Scope, NodeCallbackInvoker
 			return false;
 		}
 
-		if ($expr instanceof Expr\PropertyFetch) {
+		if ($expr instanceof Expr\PropertyFetch || $expr instanceof Expr\NullsafePropertyFetch) {
 			return $this->issetCheckUndefined($expr->var);
 		}
 

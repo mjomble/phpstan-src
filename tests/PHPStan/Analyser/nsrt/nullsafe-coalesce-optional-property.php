@@ -32,4 +32,15 @@ final class NullsafePropertyChain
 		assertType('string|null', $outer?->inner?->value ?? null);
 	}
 
+	/**
+	 * Recursion through ?-> : bar is non-nullable so issetCheck recurses
+	 * upward past the NullsafePropertyFetch for foo.
+	 *
+	 * @param object{foo?: object{bar: object{baz?: string}}} $obj
+	 */
+	public function testRecursionThroughNullsafe(mixed $obj): void
+	{
+		assertType('string|null', $obj->foo?->bar->baz ?? null);
+	}
+
 }
