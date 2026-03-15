@@ -226,4 +226,17 @@ class EmptyRuleTest extends RuleTestCase
 		]);
 	}
 
+	#[RequiresPhp('>= 8.0')]
+	public function testNullsafeCoalesceOptionalProperty(): void
+	{
+		$this->treatPhpDocTypesAsCertain = true;
+
+		$this->analyse([__DIR__ . '/data/nullsafe-coalesce-optional-property.php'], [
+			[
+				'Using nullsafe property access "?->value" in empty() is unnecessary. Use -> instead.',
+				52,
+			],
+		]);
+	}
+
 }

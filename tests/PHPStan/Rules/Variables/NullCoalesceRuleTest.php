@@ -372,4 +372,19 @@ class NullCoalesceRuleTest extends RuleTestCase
 		]);
 	}
 
+	#[RequiresPhp('>= 8.0')]
+	public function testNullsafeCoalesceOptionalProperty(): void
+	{
+		$this->analyse([__DIR__ . '/data/nullsafe-coalesce-optional-property.php'], [
+			[
+				'Using nullsafe property access "?->value" on left side of ?? is unnecessary. Use -> instead.',
+				15,
+			],
+			[
+				'Using nullsafe property access "?->value" on left side of ?? is unnecessary. Use -> instead.',
+				32,
+			],
+		]);
+	}
+
 }
