@@ -7,13 +7,11 @@ final class NullsafePropertyChain
 {
 
 	/**
-	 * @param ?object{inner?: Inner} $outer
+	 * @param object{inner?: Inner} $outer
 	 */
 	public function testOptionalPropertyWithNullsafe(mixed $outer): void
 	{
-		if ($outer !== null) {
-			$outer->inner?->value ?? null;
-		}
+		$outer->inner?->value ?? null;
 	}
 
 	/**
@@ -25,7 +23,7 @@ final class NullsafePropertyChain
 	}
 
 	/**
-	 * @param ?object{inner?: Inner} $outer
+	 * @param object{inner?: Inner} $outer
 	 */
 	public function testChainedNullsafe(mixed $outer): void
 	{
@@ -33,23 +31,19 @@ final class NullsafePropertyChain
 	}
 
 	/**
-	 * @param ?object{inner?: Inner} $outer
+	 * @param object{inner?: Inner} $outer
 	 */
 	public function testIsset(mixed $outer): void
 	{
-		if ($outer !== null) {
-			isset($outer->inner?->value);
-		}
+		isset($outer->inner?->value);
 	}
 
 	/**
-	 * @param ?object{inner?: Inner} $outer
+	 * @param object{inner?: Inner} $outer
 	 */
 	public function testEmpty(mixed $outer): void
 	{
-		if ($outer !== null) {
-			empty($outer->inner?->value);
-		}
+		empty($outer->inner?->value);
 	}
 
 }

@@ -537,7 +537,7 @@ class IssetRuleTest extends RuleTestCase
 		$this->analyse([__DIR__ . '/data/nullsafe-coalesce-optional-property.php'], [
 			[
 				'Using nullsafe property access "?->value" in isset() is unnecessary. Use -> instead.',
-				41,
+				38,
 			],
 		]);
 	}
