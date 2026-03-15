@@ -9,13 +9,11 @@ final class NullsafePropertyChain
 {
 
 	/**
-	 * @param ?object{inner?: Inner} $outer
+	 * @param object{inner?: Inner} $outer
 	 */
 	public function testOptionalPropertyWithNullsafe(mixed $outer): void
 	{
-		if ($outer !== null) {
-			assertType('string|null', $outer->inner?->value ?? null);
-		}
+		assertType('string|null', $outer->inner?->value ?? null);
 	}
 
 	/**
@@ -27,7 +25,7 @@ final class NullsafePropertyChain
 	}
 
 	/**
-	 * @param ?object{inner?: Inner} $outer
+	 * @param object{inner?: Inner} $outer
 	 */
 	public function testChainedNullsafe(mixed $outer): void
 	{
