@@ -1054,6 +1054,11 @@ class StrictComparisonOfDifferentTypesRuleTest extends RuleTestCase
 				10,
 				'Because the type is coming from a PHPDoc, you can turn off this check by setting <fg=cyan>treatPhpDocTypesAsCertain: false</> in your <fg=cyan>%configurationFile%</>.',
 			],
+			[
+				'Strict comparison using !== between string and null will always evaluate to true.',
+				13,
+				'Because the type is coming from a PHPDoc, you can turn off this check by setting <fg=cyan>treatPhpDocTypesAsCertain: false</> in your <fg=cyan>%configurationFile%</>.',
+			],
 		]);
 	}
 

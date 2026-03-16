@@ -115,9 +115,9 @@ final class AccessPropertiesCheck
 			return [];
 		}
 
-		if ($scope->isUndefinedExpressionAllowed($node) && $type instanceof StrictMixedType) {
-			return [];
-		}
+		// if ($scope->isUndefinedExpressionAllowed($node) && $type instanceof StrictMixedType) {
+		// 	return [];
+		// }
 
 		$typeForDescribe = $type;
 		if ($type instanceof StaticType) {

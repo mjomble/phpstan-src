@@ -17,7 +17,7 @@ class Foo
 		assertType('object{foo: ObjectShape\Foo, bar: int, baz?: string}', $o);
 		assertType(self::class, $o->foo);
 		assertType('int', $o->bar);
-		assertType('*ERROR*', $o->baz);
+		assertType('string', $o->baz);
 	}
 
 	/**

@@ -19,6 +19,7 @@ use PHPStan\DependencyInjection\AutowiredService;
 use PHPStan\Php\PhpVersion;
 use PHPStan\Rules\Properties\PropertyReflectionFinder;
 use PHPStan\Type\ErrorType;
+use PHPStan\Type\ObjectShapeType;
 use PHPStan\Type\MixedType;
 use PHPStan\Type\Type;
 use PHPStan\Type\TypeCombinator;
@@ -137,7 +138,11 @@ final class PropertyFetchHandler implements ExprHandler
 	{
 		$propertyReflection = $scope->getInstancePropertyReflection($fetchedOnType, $propertyName);
 		if ($propertyReflection === null) {
-			return null;
+			if ($fetchedOnType instanceof ObjectShapeType && $fetchedOnType->hasInstanceProperty($propertyName)->maybe()) {
+				$propertyReflection = $fetchedOnType->getInstanceProperty($propertyName, $scope);
+			} else {
+				return null;
+			}
 		}
 
 		if ($scope->isInExpressionAssign($propertyFetch)) {
