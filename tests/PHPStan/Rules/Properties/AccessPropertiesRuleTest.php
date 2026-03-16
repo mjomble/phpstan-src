@@ -1256,7 +1256,7 @@ class AccessPropertiesRuleTest extends RuleTestCase
 		$this->analyse([__DIR__ . '/data/bug-13537.php'], $errors);
 	}
 
-	public function testNullsafePropertyFetchInIssetCoalesce(): void
+	public function testPropertyFetchOnMixedInIssetCoalesce(): void
 	{
 		$this->checkThisOnly = false;
 		$this->checkUnionTypes = true;

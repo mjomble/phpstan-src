@@ -63,16 +63,11 @@ final class NullsafePropertyFetchHandler implements ExprHandler
 		$nonNullabilityResult = $this->nonNullabilityHelper->ensureShallowNonNullability($scope, $scope, $expr->var);
 		$attributes = array_merge($expr->getAttributes(), ['virtualNullsafePropertyFetch' => true]);
 		unset($attributes[ExprPrinter::ATTRIBUTE_CACHE_KEY]);
-		$virtualPropertyFetch = new PropertyFetch(
+		$exprResult = $nodeScopeResolver->processExprNode($stmt, new PropertyFetch(
 			$expr->var,
 			$expr->name,
 			$attributes,
-		);
-		$processScope = $nonNullabilityResult->getScope();
-		if ($processScope->isUndefinedExpressionAllowed($expr)) {
-			$processScope = $processScope->setAllowedUndefinedExpression($virtualPropertyFetch);
-		}
-		$exprResult = $nodeScopeResolver->processExprNode($stmt, $virtualPropertyFetch, $processScope, $storage, $nodeCallback, $context);
+		), $nonNullabilityResult->getScope(), $storage, $nodeCallback, $context);
 		$scope = $this->nonNullabilityHelper->revertNonNullability($exprResult->getScope(), $nonNullabilityResult->getSpecifiedExpressions());
 
 		return new ExpressionResult(

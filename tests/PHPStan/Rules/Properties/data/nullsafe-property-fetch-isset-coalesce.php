@@ -27,28 +27,4 @@ class Foo
 	{
 		empty($outer->inner->value);
 	}
-
-	/**
-	 * @param object{inner?: object{value?: string}} $outer
-	 */
-	public function testNullsafeCoalesce($outer): void
-	{
-		$outer->inner?->value ?? null;
-	}
-
-	/**
-	 * @param object{inner?: object{value?: string}} $outer
-	 */
-	public function testNullsafeIsset($outer): void
-	{
-		isset($outer->inner?->value);
-	}
-
-	/**
-	 * @param object{inner?: object{value?: string}} $outer
-	 */
-	public function testNullsafeEmpty($outer): void
-	{
-		empty($outer->inner?->value);
-	}
 }
