@@ -23,7 +23,6 @@ use PHPStan\Rules\RuleLevelHelper;
 use PHPStan\Type\Constant\ConstantStringType;
 use PHPStan\Type\ErrorType;
 use PHPStan\Type\StaticType;
-use PHPStan\Type\StrictMixedType;
 use PHPStan\Type\Type;
 use PHPStan\Type\UnionType;
 use PHPStan\Type\VerbosityLevel;
@@ -114,10 +113,6 @@ final class AccessPropertiesCheck
 		if ($scope->isInExpressionAssign($node)) {
 			return [];
 		}
-
-		// if ($scope->isUndefinedExpressionAllowed($node) && $type instanceof StrictMixedType) {
-		// 	return [];
-		// }
 
 		$typeForDescribe = $type;
 		if ($type instanceof StaticType) {
