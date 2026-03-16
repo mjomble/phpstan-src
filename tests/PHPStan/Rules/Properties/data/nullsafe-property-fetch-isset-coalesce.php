@@ -9,7 +9,7 @@ class Foo
 	 */
 	public function testCoalesce($outer): void
 	{
-		$outer->inner?->value ?? null;
+		$outer->inner->value ?? null;
 	}
 
 	/**
@@ -17,13 +17,37 @@ class Foo
 	 */
 	public function testIsset($outer): void
 	{
-		isset($outer->inner?->value);
+		isset($outer->inner->value);
 	}
 
 	/**
 	 * @param object{inner?: object{value?: string}} $outer
 	 */
 	public function testEmpty($outer): void
+	{
+		empty($outer->inner->value);
+	}
+
+	/**
+	 * @param object{inner?: object{value?: string}} $outer
+	 */
+	public function testNullsafeCoalesce($outer): void
+	{
+		$outer->inner?->value ?? null;
+	}
+
+	/**
+	 * @param object{inner?: object{value?: string}} $outer
+	 */
+	public function testNullsafeIsset($outer): void
+	{
+		isset($outer->inner?->value);
+	}
+
+	/**
+	 * @param object{inner?: object{value?: string}} $outer
+	 */
+	public function testNullsafeEmpty($outer): void
 	{
 		empty($outer->inner?->value);
 	}
